@@ -7,7 +7,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol TPKeyboardAvoidingTableView <NSObject>
+
+@end
+
 @interface TPKeyboardAvoidingTableView : UITableView
 - (BOOL)focusNextTextField;
 - (void)scrollToActiveTextField;
+
+//@property (assign) IBOutlet id delegate;
+
 @end

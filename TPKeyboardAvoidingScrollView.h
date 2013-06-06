@@ -7,7 +7,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TPKeyboardAvoidingScrollView : UIScrollView
+@protocol TPKeyboardAvoidingScrollViewDelegate <NSObject>
+    -(void)shouldSubmitFromKeyboard;
+@end
+
+@interface TPKeyboardAvoidingScrollView : UIScrollView <UITextFieldDelegate>
+
+@property (assign) IBOutlet id <TPKeyboardAvoidingScrollViewDelegate> keyboardAvoidingDelegate;
+
 - (BOOL)focusNextTextField;
 - (void)scrollToActiveTextField;
+
 @end
