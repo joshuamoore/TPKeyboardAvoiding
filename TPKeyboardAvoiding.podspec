@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name         = "TPKeyboardAvoiding"
   s.version      = "0.1"
-  s.summary      = "A drop-in universal solution for moving text fields out of the way of the keyboard in iOS with support for keyboard Done button"
+  s.summary      = "A drop-in universal solution for moving text fields out of the way of the keyboard in iOS with support for keyboard Done button."
   s.homepage     = "http://atastypixel.com/blog/a-drop-in-universal-solution-for-moving-text-fields-out-of-the-way-of-the-keyboard/"
 
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
