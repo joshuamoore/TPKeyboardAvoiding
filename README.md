@@ -22,11 +22,17 @@ For use with `UITableViewController` classes, drop `TPKeyboardAvoidingTableView.
 For non-UITableViewControllers, drop the `TPKeyboardAvoidingScrollView.m` and `TPKeyboardAvoidingScrollView.h` source files into your project, pop a `UIScrollView` into your view controller's xib, set the scroll view's class to `TPKeyboardAvoidingScrollView`, and put all your controls within that scroll view.  You can also create it programmatically, without using a xib - just use the TPKeyboardAvoidingScrollView as your top-level view.
 
 **** Added ****
+-----
 Currently, the TPKeyboardAvoiding repo doesn't implement a delegate
 function to expose the Done keyboard button click.  This fork adds a
 delegate the ScrollView implementation (TableView to come) and can be
-initialized by adding
+initialized by
 
+{h}
+`#import <TPKeyboardAvoidingScrollView.h>`
+`<TPKeyboardAvoidingScrollViewDelegate>`
+
+{m}
 `scrollView.keyboardAvoidingDelegate = self;`
 
 to your implementation file where the value scrollView is the outlet for
