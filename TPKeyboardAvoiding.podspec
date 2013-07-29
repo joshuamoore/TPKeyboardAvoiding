@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
 
   s.source       = {
     :git => "https://github.com/joshuamoore/TPKeyboardAvoiding.git",
-    :tag => "0.1.1"
+    :tag => "0.1"
   }
 
   s.platform     = :ios, '5.0'
