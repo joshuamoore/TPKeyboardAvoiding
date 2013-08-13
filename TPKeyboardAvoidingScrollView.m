@@ -62,6 +62,7 @@
     
     contentSize.width = contentSize.width;
     contentSize.height = contentSize.height;
+    NSLog(@"width: %@ - height: %@", contentSize.width, contentSize.height);
     
     [super setContentSize:contentSize];
     
@@ -78,6 +79,7 @@
     
     contentSize.width = contentSize.width;
     contentSize.height = contentSize.height;
+    NSLog(@"width: %@ - height: %@", contentSize.width, contentSize.height);
     
     [super setContentSize:contentSize];
     
