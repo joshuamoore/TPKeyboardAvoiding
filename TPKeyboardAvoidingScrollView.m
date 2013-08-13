@@ -60,8 +60,8 @@
 //    contentSize.width = MAX(contentSize.width, self.frame.size.width);
 //    contentSize.height = MAX(contentSize.height, self.frame.size.height);
     
-    contentSize.width = contentSize.width;
-    contentSize.height = contentSize.height;
+    contentSize.width = self.frame.size.width;
+    contentSize.height = self.frame.size.height;
     NSLog(@"width: %@ - height: %@", contentSize.width, contentSize.height);
     
     [super setContentSize:contentSize];
@@ -77,8 +77,8 @@
 //    contentSize.width = MAX(contentSize.width, self.frame.size.width);
 //    contentSize.height = MAX(contentSize.height, self.frame.size.height);
     
-    contentSize.width = contentSize.width;
-    contentSize.height = contentSize.height;
+    contentSize.width = self.frame.size.width;
+    contentSize.height = self.frame.size.height;
     NSLog(@"width: %@ - height: %@", contentSize.width, contentSize.height);
     
     [super setContentSize:contentSize];
