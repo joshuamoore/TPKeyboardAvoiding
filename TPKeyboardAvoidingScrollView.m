@@ -57,8 +57,12 @@
     [super setFrame:frame];
     
     CGSize contentSize = _originalContentSize;
-    contentSize.width = MAX(contentSize.width, self.frame.size.width);
-    contentSize.height = MAX(contentSize.height, self.frame.size.height);
+//    contentSize.width = MAX(contentSize.width, self.frame.size.width);
+//    contentSize.height = MAX(contentSize.height, self.frame.size.height);
+    
+    contentSize.width = contentSize.width;
+    contentSize.height = contentSize.height;
+    
     [super setContentSize:contentSize];
     
     if ( _keyboardVisible ) {
@@ -69,8 +73,12 @@
 -(void)setContentSize:(CGSize)contentSize {
     _originalContentSize = contentSize;
     
-    contentSize.width = MAX(contentSize.width, self.frame.size.width);
-    contentSize.height = MAX(contentSize.height, self.frame.size.height);
+//    contentSize.width = MAX(contentSize.width, self.frame.size.width);
+//    contentSize.height = MAX(contentSize.height, self.frame.size.height);
+    
+    contentSize.width = contentSize.width;
+    contentSize.height = contentSize.height;
+    
     [super setContentSize:contentSize];
     
     if ( _keyboardVisible ) {
