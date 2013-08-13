@@ -57,11 +57,8 @@
     [super setFrame:frame];
     
     CGSize contentSize = _originalContentSize;
-//    contentSize.width = MAX(contentSize.width, self.frame.size.width);
-//    contentSize.height = MAX(contentSize.height, self.frame.size.height);
-    
-    contentSize.width = 320;
-    contentSize.height = 100;
+    contentSize.width = MAX(contentSize.width, self.frame.size.width);
+    contentSize.height = MAX(contentSize.height, self.frame.size.height);
     
     [super setContentSize:contentSize];
     
@@ -73,11 +70,9 @@
 -(void)setContentSize:(CGSize)contentSize {
     _originalContentSize = contentSize;
     
-//    contentSize.width = MAX(contentSize.width, self.frame.size.width);
-//    contentSize.height = MAX(contentSize.height, self.frame.size.height);
-    
-    contentSize.width = 320;
-    contentSize.height = 100;
+    contentSize.width = MAX(contentSize.width, self.frame.size.width);
+    contentSize.height = MAX(contentSize.height, self.frame.size.height);
+    NSLog(@"width:%@ - height:%@", contentSize.width, contentSize.height);
     
     [super setContentSize:contentSize];
     
