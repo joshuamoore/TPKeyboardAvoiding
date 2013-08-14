@@ -10,12 +10,12 @@
 #define _UIKeyboardFrameEndUserInfoKey (&UIKeyboardFrameEndUserInfoKey != NULL ? UIKeyboardFrameEndUserInfoKey : @"UIKeyboardBoundsUserInfoKey")
 
 @interface TPKeyboardAvoidingScrollView () <UITextFieldDelegate, UITextViewDelegate> {
-    UIEdgeInsets    _priorInset;
-    BOOL            _priorInsetSaved;
-    BOOL            _keyboardVisible;
-    CGRect          _keyboardRect;
-    CGSize          _originalContentSize;
-    CGPoint         _originalContentOffset;
+    UIEdgeInsets _priorInset;
+    BOOL _priorInsetSaved;
+    BOOL _keyboardVisible;
+    CGRect _keyboardRect;
+    CGSize _originalContentSize;
+    CGPoint _originalContentOffset;
 }
 - (UIView*)findFirstResponderBeneathView:(UIView*)view;
 - (UIEdgeInsets)contentInsetForKeyboard;
@@ -32,8 +32,13 @@
     if ( CGSizeEqualToSize(self.contentSize, CGSizeZero) ) {
         self.contentSize = self.bounds.size;
     }
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUp)];
+    [recognizer setDirection:UISwipeGestureRecognizerDirectionUp];
+    [self addGestureRecognizer:recognizer];
 }
 
 -(id)initWithFrame:(CGRect)frame {
@@ -72,7 +77,6 @@
     
     contentSize.width = MAX(contentSize.width, self.frame.size.width);
     contentSize.height = MAX(contentSize.height, self.frame.size.height);
-    NSLog(@"width:%@ - height:%@", contentSize.width, contentSize.height);
     
     [super setContentSize:contentSize];
     
@@ -82,6 +86,26 @@
 }
 
 #pragma mark - Responders, events
+
+- (void)handleSwipeUp {
+    UITextField *firstTextField = (UITextField *)[self findFirstTextFieldBeneathView:self];
+    
+    [firstTextField becomeFirstResponder];
+}
+
+- (UIView*)findFirstTextFieldBeneathView:(UIView*)view {
+    for ( UIView *childView in view.subviews ) {
+        if ([childView isKindOfClass:[UITextField class]]) {
+            return childView;
+        }
+        
+        UIView *result = [self findFirstTextFieldBeneathView:childView];
+        if (result) {
+            return result;
+        }
+    }
+    return nil;
+}
 
 - (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     [[self findFirstResponderBeneathView:self] resignFirstResponder];
