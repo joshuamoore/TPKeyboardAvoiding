@@ -36,9 +36,13 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
-    UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUp)];
-    [recognizer setDirection:UISwipeGestureRecognizerDirectionUp];
-    [self addGestureRecognizer:recognizer];
+    UISwipeGestureRecognizer *swipeUprecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe)];
+    [swipeUprecognizer setDirection:UISwipeGestureRecognizerDirectionUp];
+    [self addGestureRecognizer:swipeUprecognizer];
+    
+    UISwipeGestureRecognizer *swipeDownrecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe)];
+    [swipeDownrecognizer setDirection:UISwipeGestureRecognizerDirectionDown];
+    [self addGestureRecognizer:swipeDownrecognizer];
 }
 
 -(id)initWithFrame:(CGRect)frame {
@@ -87,7 +91,7 @@
 
 #pragma mark - Responders, events
 
-- (void)handleSwipeUp {
+- (void)handleSwipe {
     UITextField *firstTextField = (UITextField *)[self findFirstTextFieldBeneathView:self];
     
     [firstTextField becomeFirstResponder];
@@ -161,6 +165,7 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     if ( ![self focusNextTextField] ) {
         if ([_keyboardAvoidingDelegate respondsToSelector:@selector(shouldSubmitFromKeyboard)]) {
+            NSLog(@"done pressed");
             [_keyboardAvoidingDelegate performSelector:@selector(shouldSubmitFromKeyboard)];
         }
     }
